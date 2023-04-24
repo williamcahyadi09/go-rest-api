@@ -1,4 +1,4 @@
-package tweets
+package domain
 
 type CustomerRepository interface {
 	Get(id string) (*Tweets, error)
