@@ -12,4 +12,7 @@ upgrade-db:
 	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} up
 
 downgrade-db:
-	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} down
+	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} down ${version}
+
+check-version:
+	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} version
