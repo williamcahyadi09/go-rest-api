@@ -1,10 +1,11 @@
 CREATE TABLE IF NOT EXISTS "tweets" (
     id VARCHAR(255) NOT NULL,
     content VARCHAR(255),
-    likes INT,
+    likes INT DEFAULT 0,
     user_id VARCHAR(255),
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ,
+    deleted_at TIMESTAMPTZ,
 
     CONSTRAINT "pk_tweets" PRIMARY KEY ("id")
 );
