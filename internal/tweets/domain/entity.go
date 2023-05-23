@@ -13,7 +13,3 @@ type Tweet struct {
 	Updated_at time.Time
 	Deleted_at time.Time
 }
-
-type TweetPayload struct {
-	Content string `json:"content"`
-}

@@ -44,3 +44,7 @@ func (uow *UnitOfWork) Rollback(tx *sqlx.Tx) error {
 	}
 	return nil
 }
+
+func (uow *UnitOfWork) GetTweetRepo() domain.TweetRepositoryInterface {
+	return uow.TweetRepository
+}
