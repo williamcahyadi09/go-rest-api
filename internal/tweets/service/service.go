@@ -20,3 +20,7 @@ func CreateTweet(
 	}
 	return nil
 }
+
+// func GetTweetsByUserId(user_id string) {
+
+// }
