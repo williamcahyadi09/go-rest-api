@@ -73,7 +73,7 @@ func (r *TweetRepository) GetByUserId(tx *sqlx.Tx, user_id string) ([]domain.Twe
 	return tweets, nil
 }
 
-func (r *TweetRepository) Add(tx *sqlx.Tx, tweet *domain.Tweet) error {
+func (r *TweetRepository) CreateTweet(tx *sqlx.Tx, tweet *domain.Tweet) error {
 	query := `INSERT INTO tweets (id, user_id, content, likes, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6)`
 
 	tweetSql := EntityToSql(tweet)
