@@ -1,7 +1,7 @@
 package service
 
 import (
-	"go-rest-api/internal/tweets/domain"
+	"go-rest-api/internal/tweet/domain"
 )
 
 func CreateTweet(

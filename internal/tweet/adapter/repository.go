@@ -1,7 +1,7 @@
 package adapter
 
 import (
-	"go-rest-api/internal/tweets/domain"
+	"go-rest-api/internal/tweet/domain"
 	"time"
 
 	"github.com/jmoiron/sqlx"

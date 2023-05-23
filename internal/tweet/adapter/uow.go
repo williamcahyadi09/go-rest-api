@@ -2,7 +2,7 @@ package adapter
 
 import (
 	"fmt"
-	"go-rest-api/internal/tweets/domain"
+	"go-rest-api/internal/tweet/domain"
 
 	"github.com/jmoiron/sqlx"
 )
