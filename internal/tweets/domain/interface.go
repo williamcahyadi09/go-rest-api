@@ -1,7 +1,17 @@
 package domain
 
-type CustomerRepository interface {
-	Get(id string) (*Tweets, error)
-	Add(tweet Tweets) error
-	Update(tweet Tweets) error
+import (
+	"github.com/jmoiron/sqlx"
+)
+
+type TweetRepositoryInterface interface {
+	GetByUserId(tx *sqlx.Tx, user_id string) ([]Tweet, error)
+	Add(tx *sqlx.Tx, tweet *Tweet) error
+	// Update(ctx context.Context, tweet *Tweet) error
+}
+
+type UnitOfWorkInterface interface {
+	Begin() (*sqlx.Tx, error)
+	Commit(tx *sqlx.Tx) error
+	Rollback(tx *sqlx.Tx) error
 }

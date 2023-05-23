@@ -4,11 +4,16 @@ import (
 	"time"
 )
 
-type Tweets struct {
-	id         string
-	content       string
-	likes      uint
-	user_id    string
-	created_at time.Time
-	updated_at time.Time
+type Tweet struct {
+	Id         string
+	Content    string
+	Likes      uint
+	User_id    string
+	Created_at time.Time
+	Updated_at time.Time
+	Deleted_at time.Time
+}
+
+type TweetPayload struct {
+	Content string `json:"content"`
 }
