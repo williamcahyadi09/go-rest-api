@@ -30,9 +30,10 @@ func (tr *TweetRouter) Create(w http.ResponseWriter, r *http.Request) {
 	username, _, ok := r.BasicAuth()
 
 	if !ok {
-		errorResp, _ := common.ToErrorResponse(common.Unauthorized)
+		status := http.StatusUnauthorized
+		errorResp := common.ToErrorResponse(status)
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusUnauthorized)
+		w.WriteHeader(status)
 		w.Write(errorResp)
 		return
 	}
@@ -40,17 +41,10 @@ func (tr *TweetRouter) Create(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&payload)
 
 	if err != nil || len(strings.TrimSpace(payload.Content)) == 0 {
-		errorResp, parseError := common.ToErrorResponse(common.BadRequest)
-
-		if parseError != nil {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusInternalServerError)
-			w.Write(errorResp)
-			return
-		}
-
+		status := http.StatusBadRequest
+		errorResp := common.ToErrorResponse(status)
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(status)
 		w.Write(errorResp)
 		return
 	}
@@ -63,12 +57,18 @@ func (tr *TweetRouter) Create(w http.ResponseWriter, r *http.Request) {
 	err = service.CreateTweet(uow, TweetEntity)
 
 	if err != nil {
-		errorResp, _ := common.ToErrorResponse(common.Unauthorized)
+		status := http.StatusInternalServerError
+		errorResp := common.ToErrorResponse(status)
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(status)
 		w.Write(errorResp)
 		return
 	}
 
+	status := http.StatusCreated
+	errorResp := common.ToErrorResponse(status)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	w.Write(errorResp)
 	return
 }
