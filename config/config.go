@@ -28,7 +28,7 @@ func loadEnv(env_path string) {
 	}
 }
 
-func GetConfig() Config {
+func GetConfig() *Config {
 
 	once.Do(func() {
 		loadEnv(".env")
@@ -44,5 +44,5 @@ func GetConfig() Config {
 		}
 	})
 
-	return *config
+	return config
 }

@@ -16,8 +16,10 @@ func CreateTweet(
 
 	err = uow.GetTweetRepo().CreateTweet(tx, tweet)
 	if err != nil {
+		tx.Rollback()
 		return err
 	}
+	tx.Commit()
 	return nil
 }
 
