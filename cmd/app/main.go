@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"go-rest-api/config"
-	tweetHttp "go-rest-api/internal/tweet/http"
+	bookHttp "go-rest-api/internal/book/http"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -19,12 +19,12 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	tweetRouter := tweetHttp.TweetRouter{Db: con}
+	bookRouter := bookHttp.BookRouter{Db: con}
 
-	r.Mount("/tweet", tweetRouter.Routes())
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
 	})
+	r.Mount("/book", bookRouter.Routes())
 
 	url := "http://127.0.0.1:8000"
 	fmt.Println("Listening on", url)

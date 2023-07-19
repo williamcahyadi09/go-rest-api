@@ -14,5 +14,5 @@ upgrade-db:
 downgrade-db:
 	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} down ${version}
 
-check-version:
+check-db-version:
 	migrate -path ${MIGRATION_PATH} -database ${DATABASE_URL} version
